@@ -212,7 +212,8 @@ if (!file_exists("$PHPUNIT_DIR/$PHPUNIT_VERSION_DIR/phpunit") || $configurationH
         $passthruOrFail("$COMPOSER remove --no-update ".$SYMFONY_PHPUNIT_REMOVE);
     }
     if (5.1 <= $PHPUNIT_VERSION && $PHPUNIT_VERSION < 5.4) {
-        $passthruOrFail("$COMPOSER require --no-update phpunit/phpunit-mock-objects \"~3.1.0\"");
+        $passthruOrFail("$COMPOSER require --no-update phpunit/phpunit-mock-objects \"dev-php7 as 3.1.0\"");
+        $passthruOrFail("$COMPOSER config repositories.phpunit-bridge path \"https://github.com/Virtuvia/phpunit-mock-objects.git\"");
     }
 
     if (preg_match('{\^((\d++\.)\d++)[\d\.]*$}', $info['requires']['php'], $phpVersion) && version_compare($phpVersion[2].'99', PHP_VERSION, '<')) {
